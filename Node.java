@@ -4,5 +4,10 @@ public class Node{
  public Node(String value){
    data=value;
  }
- 
+ public String getData(){
+   return data;
+ }
+ public void setData(String val){
+   data=val;
+ }
 }
