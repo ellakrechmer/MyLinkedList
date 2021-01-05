@@ -10,4 +10,10 @@ public class Node{
  public void setData(String val){
    data=val;
  }
+ public Node getNext(){
+   return next;
+ }
+ public void setNext(Node a){
+   next=a;
+ }
 }
