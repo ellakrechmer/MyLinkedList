@@ -72,5 +72,14 @@ public class MyLinkedList{
    curr.setData(value);
    return old;
  }
- //public String toString();
+ public String toString() {
+   String output="";
+   Node curr=start;
+   for (int i=0; i<size()-1; i++){
+     output+=curr.getData()+", ";
+     curr=curr.getNext();
+   }
+   output+=curr;
+   return output;
+ }
 }
