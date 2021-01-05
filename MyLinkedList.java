@@ -22,7 +22,7 @@ public class MyLinkedList{
    }
    return true;
  }
- public boolean add(int index, String value) {
+ public boolean add(int index, String value) throws IndexOutOfBoundsException{
    Node n=new Node(value);
    if (size()==0) {
      start=n;
@@ -45,6 +45,7 @@ public class MyLinkedList{
      Node curr=start;
      for (int i=0; i<index; i++){
        curr=curr.getNext();
+       if (curr==null) throw new IndexOutOfBoundsException();
      }
      Node next=curr.getNext();
      Node prev=curr.getPrev();
@@ -56,30 +57,33 @@ public class MyLinkedList{
      return true;
    }
  }
- public String get(int index){
+ public String get(int index) throws IndexOutOfBoundsException{
    Node curr=start;
    for (int i=0; i<index; i++){
      curr=curr.getNext();
+     if (curr==null) throw new IndexOutOfBoundsException();
    }
    return curr.getData();
  }
- public String set(int index, String value){
+ public String set(int index, String value) throws IndexOutOfBoundsException{
    Node curr=start;
    for (int i=0; i<index; i++){
      curr=curr.getNext();
+     if (curr==null) throw new IndexOutOfBoundsException();
    }
    String old=curr.getData();
    curr.setData(value);
    return old;
  }
  public String toString() {
-   String output="";
+   if (size()==0) return "[]";
+   String output="[";
    Node curr=start;
    for (int i=0; i<size()-1; i++){
      output+=curr.getData()+", ";
      curr=curr.getNext();
    }
-   output+=curr;
+   output+=curr+"]";
    return output;
  }
 }
