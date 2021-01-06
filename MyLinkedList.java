@@ -22,39 +22,36 @@ public class MyLinkedList{
    }
    return true;
  }
- public boolean add(int index, String value) throws IndexOutOfBoundsException{
+ public boolean void(int index, String value) throws IndexOutOfBoundsException{
    Node n=new Node(value);
+   if (index>size()) throw new IndexOutOfBoundsException();
    if (size()==0) {
      start=n;
      end=n;
      size++;
-     return true;
    }
    else if (index==0) {
      n.setNext(start);
      start.setPrev(n);
      start=n;
      size++;
-     return true;
    }
    else if (index==size()) {
      add(value);
-     return true;
    }
    else{
      Node curr=start;
-     for (int i=0; i<index; i++){
+     int i=0;
+     while (i<index){
        curr=curr.getNext();
-       if (curr==null) throw new IndexOutOfBoundsException();
+       i++;
      }
-     Node next=curr.getNext();
      Node prev=curr.getPrev();
-     n.setPrev(next.getPrev());
-     n.setNext(prev.getNext());
+     n.setPrev(curr.getPrev());
+     n.setNext(curr);
      prev.setNext(n);
-     next.setPrev(n);
+     curr.setPrev(n);
      size++;
-     return true;
    }
  }
  public String get(int index) throws IndexOutOfBoundsException{
