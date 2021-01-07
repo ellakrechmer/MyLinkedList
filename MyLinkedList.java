@@ -68,7 +68,7 @@ public class MyLinkedList{
      i++;
    }
    output+=curr.getData()+"]";
-   return start.getData()+output+end.getData();
+   return output;
  }
  private Node getAtIndex(int index){
    Node curr=start;
