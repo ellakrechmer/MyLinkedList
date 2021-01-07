@@ -24,12 +24,7 @@ public class MyLinkedList{
  }
  public void add(int index, String value) throws IndexOutOfBoundsException{
    Node n=new Node(value);
-   if (index>size()) throw new IndexOutOfBoundsException();
-   if (size()==0) {
-     start=n;
-     end=n;
-     size++;
-   }
+   if (index>size() || index<0 ) throw new IndexOutOfBoundsException();
    else if (index==0) {
      n.setNext(start);
      start.setPrev(n);
@@ -40,14 +35,9 @@ public class MyLinkedList{
      add(value);
    }
    else{
-     Node curr=start;
-     int i=0;
-     while (i<index){
-       curr=curr.getNext();
-       i++;
-     }
+     Node curr=getAtIndex(index);
      Node prev=curr.getPrev();
-     n.setPrev(curr.getPrev());
+     n.setPrev(prev);
      n.setNext(curr);
      prev.setNext(n);
      curr.setPrev(n);
@@ -55,28 +45,19 @@ public class MyLinkedList{
    }
  }
  public String get(int index) throws IndexOutOfBoundsException{
-   if (index<0 || index>=size()) throw new IndexOutOfBoundsException();
-   Node curr=start;
-   int i=0;
-   while (i<index){
-     curr=curr.getNext();
-     i++;
-   }
-   return curr.getData();
+   if (index>=size || index<0) throw new IndexOutOfBoundsException();
+   Node output=getAtIndex(index);
+   return output.getData();
  }
  public String set(int index, String value) throws IndexOutOfBoundsException{
-   Node curr=start;
-   for (int i=0; i<index; i++){
-     curr=curr.getNext();
-     if (curr==null) throw new IndexOutOfBoundsException();
-   }
+   Node curr=getAtIndex(index);
    String old=curr.getData();
    curr.setData(value);
    return old;
  }
  public String toString() {
    if (size()==0) return "[]";
-   String output="["; 
+   String output="[";
    Node curr=start;
    int i=0;
    while (i<size()-1){
@@ -86,5 +67,14 @@ public class MyLinkedList{
    }
    output+=curr+"]";
    return output;
+ }
+ private Node getAtIndex(int index){
+   Node curr=start;
+   int i=0;
+   while (i<index){
+     curr=curr.getNext();
+     i++;
+   }
+   return curr;
  }
 }
