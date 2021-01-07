@@ -76,7 +76,7 @@ public class MyLinkedList{
  }
  public String toString() {
    if (size()==0) return "[]";
-   String output="[";
+   String output="["; 
    Node curr=start;
    int i=0;
    while (i<size()-1){
