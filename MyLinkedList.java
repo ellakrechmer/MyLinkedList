@@ -46,12 +46,12 @@ public class MyLinkedList{
    }
  }
  public String get(int index) throws IndexOutOfBoundsException{
-   if (index>=size || index<0) throw new IndexOutOfBoundsException();
+   if (index>=size() || index<0) throw new IndexOutOfBoundsException();
    Node output=getAtIndex(index);
    return output.getData();
  }
  public String set(int index, String value) throws IndexOutOfBoundsException{
-   if (index>=size || index<0) throw new IndexOutOfBoundsException();
+   if (index>=size() || index<0) throw new IndexOutOfBoundsException();
    Node curr=getAtIndex(index);
    String old=curr.getData();
    curr.setData(value);
@@ -91,5 +91,25 @@ public class MyLinkedList{
      i++;
    }
    return curr;
+ }
+ public String remove(int index) throws IndexOutOfBoundsException{
+   Node old=getAtIndex(index);
+   if (index>=size() || index<0) throw new IndexOutOfBoundsException();
+   else if (index==0){
+     start=start.getNext();
+     start.setPrev(null);
+   }
+   else if (index==size()-1){
+     end=end.getPrev();
+     end.setNext(null);
+   }
+   else{
+     Node next=old.getNext();
+     Node prev=old.getPrev();
+     prev.setNext(next);
+     next.setPrev(prev);
+   }
+   size--;
+   return old.getData();
  }
 }
