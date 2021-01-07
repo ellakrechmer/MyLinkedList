@@ -70,6 +70,19 @@ public class MyLinkedList{
    output+=curr.getData()+"]";
    return output;
  }
+ public String toStringReversed() {
+   if (size()==0) return "[]";
+   String output="[";
+   Node curr=end;
+   int i=size()-1;
+   while(i>0){
+     output+=curr.getData()+", ";
+     curr=curr.getPrev();
+     i--;
+   }
+   output+=curr.getData()+"]";
+   return output;
+ }
  private Node getAtIndex(int index){
    Node curr=start;
    int i=0;

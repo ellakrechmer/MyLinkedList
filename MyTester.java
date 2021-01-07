@@ -4,5 +4,6 @@ public class MyTester{
     l.add("a"); l.add("b"); l.add("c"); l.add(3, "d"); l.add (3, "e"); l.add (2, "f");
     l.add(0, "g"); l.add(0, "h"); l.add("i");
     System.out.println(l);
+    System.out.println(l.toStringReversed());
   }
 }
