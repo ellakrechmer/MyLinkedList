@@ -18,6 +18,7 @@ public class MyLinkedList{
    else{
      n.setPrev(end);
      end.setNext(n);
+     end=n;
      size++;
    }
    return true;
@@ -50,6 +51,7 @@ public class MyLinkedList{
    return output.getData();
  }
  public String set(int index, String value) throws IndexOutOfBoundsException{
+   if (index>=size || index<0) throw new IndexOutOfBoundsException();
    Node curr=getAtIndex(index);
    String old=curr.getData();
    curr.setData(value);
@@ -65,8 +67,8 @@ public class MyLinkedList{
      curr=curr.getNext();
      i++;
    }
-   output+=curr+"]";
-   return output;
+   output+=curr.getData()+"]";
+   return start.getData()+output+end.getData();
  }
  private Node getAtIndex(int index){
    Node curr=start;
